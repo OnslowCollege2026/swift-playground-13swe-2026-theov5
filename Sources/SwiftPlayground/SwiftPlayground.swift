@@ -34,6 +34,24 @@ func calculateAverageCost(totalCost: Double) -> Double {
     return averageCost
 }
 
+/// Calculates which lunch cost the most, and then returns the price.
+/// 
+/// prices - The list of lunches bought this week.
+func calculateMostExpensiveLunch(prices: [Double]) -> Double {
+    var mostExpensiveLunch: Double = 0.0
+    
+    /// If a lunch is more expensive than the current most expensive lunch, sets that
+    /// lunch as the new most expensive.
+    for lunch in prices {
+        
+        if lunch > mostExpensiveLunch {
+            mostExpensiveLunch = lunch
+        }
+    }
+
+    return mostExpensiveLunch
+}
+
 @main
 struct SwiftPlayground {
     static func main() {
@@ -66,8 +84,9 @@ struct SwiftPlayground {
         let lunchesCost = calculateLunchesCost(prices: lunches)
         let totalCost = lunchesCost + snacksCost
         let averageLunchCost = calculateAverageCost(totalCost: lunchesCost)
+        let mostExpensiveLunch = calculateMostExpensiveLunch(prices: lunches)
 
-        // Prints out the totals and averages.
+        // Prints out the totals, the average, and most expensive lunch.
         print("""
 
         Weekly Summary:
@@ -77,6 +96,7 @@ struct SwiftPlayground {
         print("Snacks Total: $\(snacksCost)")
         print("Combined Total: $\(totalCost)")
         print("Average Lunch Cost: $\(averageLunchCost)")
+        print("Most Expensive Lunch: $\(mostExpensiveLunch)")
 
         // Prints a message notifying the user whether they are within or over the budget.
         if isOverBudget(total: totalCost, budget: budget) {
