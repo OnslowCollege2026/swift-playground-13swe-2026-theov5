@@ -4,6 +4,12 @@
 @main
 struct SwiftPlayground {
     static func main() {
-        print("Hello, world!")
+        let words = ["apple", "cat", "banana", "dog", "grape", "kiwi"]
+        print(words)
+
+        let shortenedWords = words.filter {word in 
+        return word.count <= 4}
+
+        print(shortenedWords)
     }
 }
