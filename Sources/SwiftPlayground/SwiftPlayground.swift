@@ -49,10 +49,19 @@ struct SwiftPlayground {
 
         let scores = [45, 78, 89, 32, 50, 92, 67, 41, 99, 56]
 
-        let averageScore = scores.map{
+        // Adds 5 to all scores in the list, removes any that didn't pass, and then averages the remaining scores.
+        let addedScores = scores.map{
             return $0 + 5
         }.filter{
             return $0 >= passingGrade
-        }.reduce
+        }.reduce(0){
+            return $0 + $1
+        }
+
+        let numberOfPassingScores = 8
+
+        // Averages the passing scores.
+        let averageScore = addedScores / numberOfPassingScores
+        print(averageScore)
     }
 }
