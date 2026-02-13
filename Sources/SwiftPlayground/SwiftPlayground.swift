@@ -30,6 +30,23 @@ struct SwiftPlayground {
             ]
         ]
 
-        let chosenWord = archive.last
+        // Creates a variable containg the last list in archive.
+        if let threeDList = archive.last, let twoDList = threeDList.last, let oneDList = twoDList.last {
+            
+            // Prints the first item of the last list.
+            let cipher = oneDList.first
+            print(cipher)
+        }
+
+        let sightings = [
+            (name: "moth", score: 3),
+            (name: "wolf", score: 9),
+            (name: "raven", score: 4),
+            (name: "mist", score: 7),
+            (name: "wisp", score: 2)
+        ]
+
+        let filteredSightings = sightings.filter {}
+        
     }
 }
