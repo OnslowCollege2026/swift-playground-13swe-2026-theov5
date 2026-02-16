@@ -19,25 +19,6 @@ struct SwiftPlayground {
             print("Yeehaw, I love numbers!")
         }
 
-        let archive = [
-            [
-                [["candle", "dust"], ["mirror", "ash"]],
-                [["whisper", "shadow"], ["clock", "veil"]]
-            ],
-            [
-                [["stone", "key"], ["relic", "name"]],
-                [["cipher", "bone"], ["ember", "seal"]]
-            ]
-        ]
-
-        // Creates a variable containg the last list in archive.
-        if let threeDList = archive.last, let twoDList = threeDList.last, let oneDList = twoDList.last {
-            
-            // Prints the first item of the last list.
-            let cipher = oneDList.first
-            print(cipher)
-        }
-
         let sightings = [
             (name: "moth", score: 3),
             (name: "wolf", score: 9),
@@ -46,7 +27,27 @@ struct SwiftPlayground {
             (name: "wisp", score: 2)
         ]
 
-        let filteredSightings = sightings.filter {}
+        // Removes any which do not begin with m or w.
+        let filteredSightings = sightings.filter {
+            $0.0.first == "m" || $0.0.first == "w"
+        }
         
+        // Creates a list containing only the scores from filteredSightings.
+        let sightingScores = filteredSightings.map {
+            $0.score
+        }
+
+        // Totals the scores for every creature.
+        let addedScores = sightingScores.reduce(0) {
+            return $0 + $1
+        }
+        print(addedScores)
+
+        // Prints out the lowest and highest score in sightingScores.
+        if let highestScore = sightingScores.max {$0 < $1}, let lowestScore = sightingScores.min {$0 < $1} {
+            print(highestScore)
+            print(lowestScore)
+        }
+
     }
 }
