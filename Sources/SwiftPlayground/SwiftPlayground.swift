@@ -1,5 +1,5 @@
-// The Swift Programming Language
-// https://docs.swift.org/swift-book
+// Closures programming task.
+
 
 @main
 struct SwiftPlayground {
@@ -49,5 +49,74 @@ struct SwiftPlayground {
             print(lowestScore)
         }
 
+        /// Checks if a given string meets a certain parameter.
+        /// 
+        /// input - The string which is being evaluated.
+        /// isValid - The function containing the conditions for input.
+        func accepts(input: String, isValid: (String) -> Bool) -> Bool {
+            return isValid(input)
+        }
+
+        let sample = "moonlight"
+
+        /// If the input is all lowercase and more than 8 characters it is valid, and
+        /// the function prints a message. Otherwise does nothing.
+        if accepts(input: sample, isValid: {$0.count > 8 && $0.lowercased() == $0}) {
+            print("'\(sample)' is valid.")
+        }
+
+
+        let archive = [
+            [
+                [["candle", "dust"], ["mirror", "ash"]],
+                [["whisper", "shadow"], ["clock", "veil"]]
+            ],
+            [
+                [["stone", "key"], ["relic", "name"]],
+                [["cipher", "bone"], ["ember", "seal"]]
+            ],
+            [
+                [["feather", "ink"], ["glow", "eclipse"]],
+                [["riddle", "echo"], ["ember", "glyph"]]
+            ]
+        ]
+
+        /// Creates a variable containing the last wing (3d layer) which contains
+        /// a word starting with the letter "e".
+        let wing = archive.last {$0.contains {
+            $0.contains {
+                $0.contains {
+                    $0.first == "e"}
+            }
+        }
+        }
+
+        // Unwraps wing.
+        if let wing {
+            
+            /// Creates a variable containing the last room (2d layer) which
+            /// contains a 4 letter word.
+            let room = wing.last {$0.contains {
+                $0.contains {$0.count == 4}
+            }
+            }
+
+            // Unwraps room.
+            if let room {
+                
+                /// Creates a variable containing the last shelf (1d array) which
+                /// contains a word starting with "e".
+                let shelf = room.last {$0.contains {$0.first == "e"}}
+                
+                // Unwraps shelf.
+                if let shelf {
+                    
+                    /// Creates a variable containing the first word in shelf that starts
+                    /// with the letter "e".
+                    let word = shelf.first {$0.first == "e"}
+                    print(word)
+                }
+            }
+        }
     }
 }
